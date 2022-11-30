@@ -27,6 +27,7 @@ public:
 	bool OnUserCreate() override
 	{
 		theMap.theMap;
+		walls.spriteInit();
 		player.Init();
 		rays.castAllRays(player, theMap);
 		return true;

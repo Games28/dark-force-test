@@ -1,40 +1,29 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "Defs.h"
 #include "olcPixelGameEngine.h"
+#include "defs.h"
+//#include "Player.h"
+//#include "Raycast.h"
+
 
 class Map
 {
 public:
-	Map() = default;
-    void InitMap();
-	bool mapHasWallAt(float x, float y);
-	bool isInsideMap(float x, float y);
-	void renderMap(olc::PixelGameEngine& pge);
-	int getMapAt(int x, int y);
+    Map() {}
+    void initMap();
+    void RenderMapGrid(olc::PixelGameEngine* pge);
+   // void RenderMapPlayer(olc::PixelGameEngine* pge, Player& player);
+   // void RenderMapRays(olc::PixelGameEngine* pge, Player& player, Raycast& ray);
+
 public:
-	
-	int theMap[MAP_NUM_ROWS][MAP_NUM_COLS] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 7, 0, 7, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 0, 1},
-	{1, 0, 7, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 1},
-	{1, 0, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
-	{1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 2, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5},
-	{1, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5}
-	};
+    std::string sMap;     // contains chars that define the type of block per map location
+    float* fMap;     // contains floats that represent the height per block
+    int nMapX = 32;
+    int nMapY = 32;
+    float fMaxDistance = sqrt(nMapX * nMapX + nMapY * nMapY);
+
 };
-
-
 #endif // !MAP_H
-
 
 
